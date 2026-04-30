@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ESG Qatar SME Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-container {
+            max-width: 550px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="card">
+            <div class="auth-header">
+                <h1>🌿 ESG Qatar SME</h1>
+                <p>Create your account</p>
+            </div>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label>Company Name *</label>
+                    <input type="text" id="companyName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Business Sector *</label>
+                    <select id="sector" required>
+                        <option value="">Select your sector</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="E-Commerce">E-Commerce</option>
+                        <option value="Education">Education</option>
+                        <option value="Fintech">Fintech</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Industrial Manufacturing">Industrial Manufacturing</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Number of Employees</label>
+                    <input type="number" id="numEmployees" value="0">
+                </div>
+                
+                <div class="form-group">
+                    <label>Password * (min 8 characters)</label>
+                    <input type="password" id="password" required minlength="8">
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+            
+            <p style="text-align: center; margin-top: 20px;">
+                Already have an account? <a href="login.html">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        if (api.token) {
+            window.location.href = 'dashboard.html';
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const userData = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                company_name: document.getElementById('companyName').value,
+                sector: document.getElementById('sector').value,
+                num_employees: parseInt(document.getElementById('numEmployees').value) || 0
+            };
+            
+            try {
+                await api.signup(userData);
+                alert('Account created successfully! Please login.');
+                window.location.href = 'login.html';
+            } catch (error) {
+                alert('Signup failed: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

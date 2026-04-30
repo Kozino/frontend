@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter ESG Data - Qatar SME Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">🌿 ESG Qatar SME</a>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="esg-form.html">Enter ESG Data</a>
+                <a href="reports.html">Reports</a>
+                <a href="materiality.html">Materiality</a>
+                <a href="#" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Enter ESG Performance Data</h1>
+        <p>Based on QDB ESG Guidance Manual for SMEs (Pages 16-28)</p>
+
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('environment')">🌍 Environment</button>
+                <button class="tab" onclick="showTab('social')">👥 Social</button>
+                <button class="tab" onclick="showTab('governance')">⚖️ Governance</button>
+            </div>
+
+            <form id="esgForm">
+                <input type="hidden" id="reportingYear" value="2025">
+                
+                <!-- Environment Tab -->
+                <div id="environment" class="tab-content">
+                    <h3>GHG Emissions (Page 16)</h3>
+                    <div class="form-group">
+                        <label>Scope 1 Emissions (tCO2e)</label>
+                        <input type="number" id="scope1" step="0.01" placeholder="e.g., 150.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Scope 2 Emissions (tCO2e)</label>
+                        <input type="number" id="scope2" step="0.01" placeholder="e.g., 200.3">
+                    </div>
+                    <div class="form-group">
+                        <label>Scope 3 Emissions (tCO2e)</label>
+                        <input type="number" id="scope3" step="0.01" placeholder="e.g., 300.0">
+                    </div>
+
+                    <h3>Energy Management (Page 18)</h3>
+                    <div class="form-group">
+                        <label>Total Electricity Consumption (kWh)</label>
+                        <input type="number" id="electricity" step="0.01" placeholder="e.g., 50000">
+                    </div>
+                    <div class="form-group">
+                        <label>Renewable Energy Percentage (%)</label>
+                        <input type="number" id="renewable" step="0.1" placeholder="e.g., 25">
+                    </div>
+
+                    <h3>Water & Waste (Pages 18-19)</h3>
+                    <div class="form-group">
+                        <label>Total Water Consumption (m³)</label>
+                        <input type="number" id="water" step="0.01" placeholder="e.g., 1000">
+                    </div>
+                    <div class="form-group">
+                        <label>Total Waste Generated (tonnes)</label>
+                        <input type="number" id="waste" step="0.01" placeholder="e.g., 50">
+                    </div>
+                    <div class="form-group">
+                        <label>Waste Recycled Percentage (%)</label>
+                        <input type="number" id="wasteRecycled" step="0.1" placeholder="e.g., 45">
+                    </div>
+                </div>
+
+                <!-- Social Tab -->
+                <div id="social" class="tab-content" style="display: none;">
+                    <h3>Human Capital (Page 21)</h3>
+                    <div class="form-group">
+                        <label>Total Employees (FTE)</label>
+                        <input type="number" id="employees" placeholder="e.g., 150">
+                    </div>
+                    <div class="form-group">
+                        <label>Employee Turnover Rate (%)</label>
+                        <input type="number" id="turnover" step="0.1" placeholder="e.g., 15">
+                    </div>
+
+                    <h3>Health & Safety (Page 20)</h3>
+                    <div class="form-group">
+                        <label>LTIFR (per million hours)</label>
+                        <input type="number" id="ltifr" step="0.01" placeholder="e.g., 2.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Safety Training Completion (%)</label>
+                        <input type="number" id="safetyTraining" step="0.1" placeholder="e.g., 85">
+                    </div>
+
+                    <h3>Diversity & Inclusion (Page 23)</h3>
+                    <div class="form-group">
+                        <label>Women in Board (%)</label>
+                        <input type="number" id="womenBoard" step="0.1" placeholder="e.g., 30">
+                    </div>
+                    <div class="form-group">
+                        <label>Qatarization Percentage (%)</label>
+                        <input type="number" id="qatarization" step="0.1" placeholder="e.g., 20">
+                    </div>
+                </div>
+
+                <!-- Governance Tab -->
+                <div id="governance" class="tab-content" style="display: none;">
+                    <h3>Corporate Governance (Page 24)</h3>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="antibribery"> Anti-bribery policy in place
+                        </label>
+                    </div>
+
+                    <h3>Supply Chain Management (Page 26)</h3>
+                    <div class="form-group">
+                        <label>Suppliers screened for ESG (%)</label>
+                        <input type="number" id="supplierScreened" step="0.1" placeholder="e.g., 75">
+                    </div>
+                    <div class="form-group">
+                        <label>Local Procurement (%)</label>
+                        <input type="number" id="localProcurement" step="0.1" placeholder="e.g., 60">
+                    </div>
+
+                    <h3>Data Privacy & Cyber Security (Page 27)</h3>
+                    <div class="form-group">
+                        <label>Data Breaches Count (this year)</label>
+                        <input type="number" id="dataBreaches" placeholder="e.g., 0">
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button type="submit" class="btn btn-primary">💾 Save ESG Data</button>
+                    <button type="button" onclick="window.location.href='dashboard.html'" class="btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        // Check authentication
+        if (!api.token) {
+            window.location.href = 'login.html';
+        }
+
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            document.getElementById(tabName).style.display = 'block';
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        document.getElementById('esgForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const esgData = {
+                reporting_year: parseInt(document.getElementById('reportingYear').value),
+                scope1_emissions: parseFloat(document.getElementById('scope1').value) || 0,
+                scope2_emissions: parseFloat(document.getElementById('scope2').value) || 0,
+                scope3_emissions: parseFloat(document.getElementById('scope3').value) || 0,
+                total_electricity_kwh: parseFloat(document.getElementById('electricity').value) || 0,
+                renewable_energy_percentage: parseFloat(document.getElementById('renewable').value) || 0,
+                total_water_consumption: parseFloat(document.getElementById('water').value) || 0,
+                total_waste_generated: parseFloat(document.getElementById('waste').value) || 0,
+                waste_recycled_percentage: parseFloat(document.getElementById('wasteRecycled').value) || 0,
+                total_employees: parseInt(document.getElementById('employees').value) || 0,
+                employee_turnover_rate: parseFloat(document.getElementById('turnover').value) || 0,
+                ltifr: parseFloat(document.getElementById('ltifr').value) || 0,
+                safety_training_completion: parseFloat(document.getElementById('safetyTraining').value) || 0,
+                women_in_board_percentage: parseFloat(document.getElementById('womenBoard').value) || 0,
+                qatarization_percentage: parseFloat(document.getElementById('qatarization').value) || 0,
+                has_antibribery_policy: document.getElementById('antibribery').checked,
+                supplier_esg_screened: parseFloat(document.getElementById('supplierScreened').value) || 0,
+                local_procurement_percentage: parseFloat(document.getElementById('localProcurement').value) || 0,
+                data_breaches_count: parseInt(document.getElementById('dataBreaches').value) || 0
+            };
+            
+            try {
+                const result = await api.saveESGData(esgData);
+                alert('ESG data saved successfully!');
+                window.location.href = 'dashboard.html';
+            } catch (error) {
+                alert('Error saving data: ' + error.message);
+            }
+        });
+
+        document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            api.logout();
+        });
+    </script>
+</body>
+</html>

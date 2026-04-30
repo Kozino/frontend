@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG Dashboard - Qatar SME Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="dashboard.html" class="logo">🌿 ESG Qatar SME</a>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="esg-form.html">Enter ESG Data</a>
+                <a href="reports.html">Reports</a>
+                <a href="materiality.html">Materiality</a>
+                <a href="#" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>ESG Performance Dashboard</h1>
+        <p>Welcome, <span id="companyName">Loading...</span> | Sector: <span id="sector">-</span></p>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Overall ESG Score</h3>
+                <div class="score-circle" id="scoreCircle">
+                    <div class="score-inner" id="totalScore">0</div>
+                </div>
+                <div id="esgLevel" class="badge badge-basic">Not Started</div>
+            </div>
+
+            <div class="card">
+                <h3>Environmental Score</h3>
+                <div class="score-circle" id="envCircle" style="background: conic-gradient(#2ecc71 0deg, #ecf0f1 0deg)">
+                    <div class="score-inner" id="envScore">0</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Social Score</h3>
+                <div class="score-circle" id="socialCircle" style="background: conic-gradient(#3498db 0deg, #ecf0f1 0deg)">
+                    <div class="score-inner" id="socialScore">0</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Governance Score</h3>
+                <div class="score-circle" id="govCircle" style="background: conic-gradient(#e74c3c 0deg, #ecf0f1 0deg)">
+                    <div class="score-inner" id="govScore">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Recent ESG Data Entry</h3>
+            <div id="recentData">
+                <p class="text-muted">No data entered yet. <a href="esg-form.html">Add your first ESG data</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Quick Actions</h3>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button onclick="window.location.href='esg-form.html'" class="btn btn-primary">📊 Enter ESG Data</button>
+                <button onclick="window.location.href='materiality.html'" class="btn btn-secondary">🎯 Materiality Assessment</button>
+                <button onclick="window.location.href='reports.html'" class="btn btn-primary">📄 Generate Report</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
